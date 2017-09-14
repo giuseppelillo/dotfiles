@@ -1,0 +1,158 @@
+;-------------------------------------------------------------------------------
+;	V A R I A B L E S
+;-------------------------------------------------------------------------------
+
+[colors]
+background = #131313
+background-alt = #333
+
+foreground = #b2b2b2
+foreground-alt = #ee3333
+
+trans = #DA292b2e
+white = #eee
+grey = #444444
+pink = #d75f87
+blue = #4f97d7
+purple = #875faf
+green = #20ad80
+red = #ee3333
+
+;-------------------------------------------------------------------------------
+;	B A R S
+;-------------------------------------------------------------------------------
+
+[bar/top]
+monitor = DP-1
+width = 100%
+height = 30
+bottom = false
+padding-left = 5
+padding-right = 5
+
+background = #df13121a
+foreground = #FFFFFF
+
+font-0 = xos4 Terminus:style=Regular:size=12;1
+;font-2 = Dina:style=Regular:pixelsize=13;1
+font-1 = FontAwesome:fontformat=truetype:size=8;1
+
+wm-name = topbar
+
+modules-left = bspwm
+modules-center = date
+modules-right = volume cpu memory wlan
+
+[module/date]
+type = custom/script
+exec = echo "  $(date +'%H:%M  %A %d %B')"
+interval = 1
+click-left = gnome-calendar
+
+format-foreground = #10a8c3
+ 
+
+[module/song]
+type = custom/script
+exec = mpc | head -1
+interval = 2
+click-left = mpc toggle
+
+[module/bspwm]
+type = internal/bspwm
+
+format = <label-state> <label-mode>
+
+ws-icon-0 = I;I
+ws-icon-1 = II;II 
+ws-icon-2 = III;III 
+ws-icon-3 = IV;IV
+ws-icon-4 = V;V
+ws-icon-5 = VI;VI
+ws-icon-6 = VII;VII
+ws-icon-7 = VIII;VIII
+ws-icon-8 = IX;IX
+ws-icon-9 = X;X
+ws-icon-default =  
+
+label-visible-underline = #FFFFFF
+label-focused = %icon%
+label-focused-foreground = #9924a4
+label-focused-underline = #FFFFFF
+label-focused-padding = 2
+
+label-occupied = %icon%
+label-occupied-foreground = #ffaa11
+label-occupied-underline = #FFFFFF
+label-occupied-padding = 2
+
+label-empty = %icon%
+label-empty-foreground = #ffaa11
+label-empty-underline = #FFFFFF
+label-empty-padding = 2
+
+[module/volume]
+type = internal/volume
+
+; mapping = true
+format-volume = <ramp-volume><label-volume>
+
+label-volume = %percentage%%
+label-volume-foreground = ${colors.blue}
+;label-volume-background = ${colors.background}
+label-muted = " MUTED "
+label-muted-foreground = ${colors.blue}
+;label-muted-background = ${colors.background}
+
+ramp-volume-0 = " VOL "
+ramp-volume-0-foreground = ${colors.blue}
+;ramp-volume-0-background = ${colors.background}
+ramp-volume-1 = " VOL "
+ramp-volume-1-foreground = ${colors.blue}
+;ramp-volume-1-background = ${colors.background}
+ramp-volume-2 = " VOL "
+ramp-volume-2-foreground = ${colors.blue}
+;ramp-volume-2-background = ${colors.background}
+ramp-volume-3 = " VOL "
+ramp-volume-3-foreground = ${colors.blue}
+;ramp-volume-3-background = ${colors.background}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "  CPU "
+format-prefix-foreground = #9924a4
+;format-prefix-background = ${colors.background}
+label = %percentage%%
+label-foreground = #9924a4
+;label-background = ${colors.background}
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "  RAM "
+format-prefix-foreground = ${colors.pink}
+label = %percentage_used%%
+label-foreground = ${colors.pink}
+
+[module/wlan]
+type = internal/network
+interface = wlp4s0
+interval = 3.0
+
+format-connected = <label-connected> <ramp-signal>
+format-connected-underline = #9f78e1
+format-connected-foreground = #2fe06a
+label-connected = "  WIFI"
+
+format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+label-disconnected = "  NO WIFI"
+label-disconnected-foreground = #e52929
+
+ramp-signal-0 = •
+ramp-signal-1 = ••
+ramp-signal-2 = •••
+ramp-signal-3 = ••••
+ramp-signal-4 = •••••
+
