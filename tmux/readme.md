@@ -1,3 +1,3 @@
 ```
-cp .tmux.conf ~
+ln -f .tmux.conf ~/.tmux.conf
 ```
